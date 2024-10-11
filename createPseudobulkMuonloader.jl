@@ -64,26 +64,26 @@ function createPseudobulk(adata, ident_var::String, save_dir::String)
 end
 
 
-function main(args)
-    # Parse the command line arguments
-    @argparse args begin
-        "--dataset", help="Path to the .h5ad file", required = true, arg_type = String
-        "--ident_var", help="Identifier variable for pseudobulk creation", required=true,
-        arg_type=String
-        "--save_dir", help="Directory to save the output"
-    end
+# function main(args)
+#     # Parse the command line arguments
+#     @argparse args begin
+#         "--dataset", help="Path to the .h5ad file", required = true, arg_type = String
+#         "--ident_var", help="Identifier variable for pseudobulk creation", required=true,
+#         arg_type=String
+#         "--save_dir", help="Directory to save the output"
+#     end
     
-    adata = h5open(args.dataset) do file
-        read(file)
-    end 
+#     adata = readh5ad(args.dataset) do file
+#         read(file)
+#     end 
 
-    createPseudobulk(adata, args.ident_var, args.save_dir)
-end
+#     createPseudobulk(adata, args.ident_var, args.save_dir)
+# end
 
-# Allows running the script directly or import it without executing main
-if abspath(PROGRAM_FILE) == abspath(@__FILE__)
-    main(ARGS)
-end
+# # Allows running the script directly or import it without executing main
+# if abspath(PROGRAM_FILE) == abspath(@__FILE__)
+#     main(ARGS)
+# end
 
 
 
@@ -91,7 +91,7 @@ end
 
 # function main(args)
 #     # Load the data from the provided path
-#     adata = h5open(args["dataset"], "r") do file
+#     adata = readh5ad(args["dataset"], "r") do file
 #         read(file)
 #     end
 
